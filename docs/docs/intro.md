@@ -1,11 +1,12 @@
 ---
 sidebar_position: 1
 slug: /
+title: Welcome
 ---
 
-# Welcome
+# Welcome to SocialAGI
 
-> The AI cognition library
+> Practical Tools for Guiding LLM Cognition
 
 **SocialAGI** offers developers clean, simple, and extensible abstractions for directing the cognitive processes of large language models (LLMs). Advanced AI agents, entities, and souls will comprise thousands of *linguistic instructions* (formerly known as 'prompts'): our focus is on streamlining the management this complexity, freeing you to create more effective and engaging AI experiences.
 
