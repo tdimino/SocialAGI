@@ -5,7 +5,7 @@ slug: /
 
 # Welcome
 
-> Design better AI experiences with LLMs through directed cognition
+> The library for AI cognition
 
 **SocialAGI** offers developers clean, simple, and extensible abstractions for directing the cognitive processes of large language models (LLMs). Advanced AI agents, entities, and souls will comprise thousands of *linguistic instructions* (formerly known as 'prompts'): our focus is on streamlining the management this complexity, freeing you to create more effective and engaging AI experiences.
 
