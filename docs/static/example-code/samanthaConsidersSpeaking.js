@@ -1,3 +1,4 @@
+#!/bin/playground
 // Import a few important pieces from the socialagi library
 // check out https://www.socialagi.dev/Soul for further detail
 import { Action, CortexStep, CortexScheduler } from "socialagi";
