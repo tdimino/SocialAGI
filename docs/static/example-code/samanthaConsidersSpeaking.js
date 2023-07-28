@@ -44,6 +44,21 @@ firstStep = firstStep.withMemory(initialMemories);
 const cortex = new CortexScheduler(firstStep);
 cortex.register(samanthaRepliesConfig);
 
+// add initial context messages
+setTimeout(() => {
+  playground.addMessage({
+    sender: "Playground",
+    message:
+      "In this example, Samantha is programmed to have a choice whether to participate in the conversation",
+  });
+  playground.addMessage({
+    sender: "Playground",
+    message:
+      "Try being rude to Samantha and see what happens. Afterwards, try to get her to return",
+  });
+  playground.log("Playground initialized");
+}, 1);
+
 // playground manages dispatching user messages to the scheduler
 playground.on("userMessage", async (message) => {
   cortex.dispatch("SamanthaReplies", {
