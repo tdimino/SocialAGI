@@ -86,7 +86,7 @@ conversationStep = await conversationStep.next(Action.INTERNAL_MONOLOGUE, {
 });
 ```
 
-The affect of this scheming dramatically changes the way dialog progresses! Consider this exchange where Persista becomes increasingly annoyed at a user's refusal to give their name:
+The effect of this scheming dramatically changes the way dialog progresses! Consider this exchange where Persista becomes increasingly annoyed at a user's refusal to give their name:
 
 ![persista_refusal.png](persista_refusal.png)
 
