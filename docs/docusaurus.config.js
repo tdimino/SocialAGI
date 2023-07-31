@@ -82,7 +82,7 @@ const config = {
           { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/opensouls/SocialAGI",
-            label: "GitHub",
+            label: "⭐ Star us on GitHub",
             position: "right",
           },
           {
