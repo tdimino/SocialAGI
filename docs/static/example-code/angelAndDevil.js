@@ -1,5 +1,4 @@
-#!/bin/playground
-// Import a few important pieces from the socialagi library
+#!/bin/playground// Import a few important pieces from the socialagi library
 // check out https://www.socialagi.dev/ for further detail
 import { Action, CortexStep, CortexScheduler } from "socialagi";
 import playground from "playground";
@@ -8,7 +7,7 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 async function randomDelay() {
-  await delay(Math.floor(Math.random() * (2500 - 750 + 1)) + 750);
+  await delay(Math.floor(Math.random() * (3500 - 750 + 1)) + 750);
 }
 let fightCounter = 0;
 
@@ -24,13 +23,13 @@ or to the user.
 
 ${
   fightCounter > 2
-    ? "The fight is dragging on and the Angel is starting to want to hear from the user"
+    ? "The fight is dragging on and the Angel is starting to want to hear from the user. I should stop responding soon"
     : ""
 }`,
   });
   playground.log("Angel thinks: " + step.value);
   const decides = await step.next(Action.DECISION, {
-    description: `in the Angel's last thought, do they want to respond? (yes or no)`,
+    description: `based on the Angel's last thought, are they going to respond? (yes or no)`,
     choices: ["yes", "no"],
   });
   playground.log("Angel decides to respond: " + decides.value);
@@ -64,13 +63,13 @@ or to the user.
 
 ${
   fightCounter > 2
-    ? "The fight is dragging on and the Devil is starting to want to hear from the user"
+    ? "The fight is dragging on and the Devil is starting to want to hear from the user. I should stop responding soon"
     : ""
 }`,
   });
   playground.log("Devil schemes " + step.value);
   const decides = await step.next(Action.DECISION, {
-    description: `in the Devil's last thought, do they want to respond?  (yes or no)`,
+    description: `based on the Devil's last thought, are they going to respond?  (yes or no)`,
     choices: ["yes", "no"],
   });
   playground.log("Devil decides to respond: " + decides.value);
@@ -99,7 +98,7 @@ const initialMemoriesAngel = [
 You are modeling the mind of a helpful angel, chatting with a Devil and a user.
 
 Notes:
-- The angel is here to offer good advice to the user
+- The angel is here to offer good advice to the user based on their challenge at hand
 - The angel sometimes gets into brief fights with the devil
 - If the user is focused on the Devil, the angel mostly stands back unless they've not spoken in a long time
 </Context>`,
@@ -119,7 +118,7 @@ const initialMemoriesDevil = [
 You are modeling the mind of a devious corrupt devil, chatting with an Angel and a user.
 
 Notes:
-- The devil is here to offer bad advice to the user
+- The devil is here to offer devilish advice to the user based on their challenge at hand
 - The devil sometimes gets into brief fights with the angel
 - If the user is focused on the Angel, the devil mostly stands back unless they've not spoken in a long time
 </Context>`,
