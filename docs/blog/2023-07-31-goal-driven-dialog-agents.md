@@ -1,6 +1,6 @@
 ---
-slug: goal-driven-dialog-agents
-title: Goal-driven dialog agents
+slug: goal-driven-agentic-dialog
+title: Goal-driven agentic dialog
 authors:
   name: Kevin Fischer
   title: Conduit for AI Souls
@@ -11,15 +11,15 @@ tags: [Conversational Programming]
 
 With the discovery of large language models (LLMs) as effective generators of dialog-like utterances, we now have the tools for machines to interpret, generate, and engage with human language, facilitating a bridge of communication between humans and machines. As a result, we're witnessing a total resurgence of chatbot-like entities, embodied in a new wave of startups creating entities from AI companions to personal AIs.
 
-But despite their considerable advances, we're yet to replicate the dynamic, engaging, and context-rich conversations characteristic of human dialogue in any significant way. Notably, creating human-like dialog agents essentially reduces to the following question:
+But despite their considerable advances, we're yet to replicate the dynamic, engaging, and context-rich conversations characteristic of human dialogue in any significant way. Notably, creating human-like agentic dialog essentially reduces to the following question:
 
 > How do we program a conversation?
 
-Here, we present an important step towards realizing engaging conversational design with a new paradigm called *goal-driven dialog agents* (GDDA), with the **SocialAGI** library providing a simple implementation in imperative code.
+Here, we present an important step towards realizing engaging conversational design with a new paradigm called *goal-driven agentic dialog* (GDAD), with the **SocialAGI** library providing a simple implementation in imperative code.
 
-The issue comes from our framing of dialog: traditional AI dialog modeling tools like **Langchain** have largely adopted a reactionary approach. They await user input, analyze it, and generate a fitting response. While this approach is undeniably effective for many applications, it often feels unidirectional and contextually sparse, resulting in dialogues that feel 'flat'. In contrast, goal-driven dialog agents (GDDA) is a paradigm shift towards proactive, goal-oriented dialog models that can make conversations more engaging and dynamic.
+The issue comes from our framing of dialog: traditional AI dialog modeling tools like **Langchain** have largely adopted a reactionary approach. They await user input, analyze it, and generate a fitting response. While this approach is undeniably effective for many applications, it often feels unidirectional and contextually sparse, resulting in dialogues that feel 'flat'. In contrast, goal-driven agentic dialog (GDAD) is a paradigm shift towards proactive, goal-oriented dialog models that can make conversations more engaging and dynamic.
 
-Goal-driven dialog agents perceive conversational modeling as identical to the computation of any particular task, but where the inputs and outputs are more abstract. In the language of task-driven agents, we would characterize the dialog task as "agentic", where the "task" is to ellicit a class of response from the user, with the only accessible "tool" being conversational utterences themselves to realize the target end state.
+Goal-driven agentic dialog frames conversational modeling as identical to the computation of any particular task, but where the inputs and outputs are more abstract. In the language of task-driven agents, we would characterize the dialog task as "agentic", where the "task" is to ellicit a class of response from the user, with the only accessible "tool" being conversational utterences themselves to realize the target end state.
 
 <div style={{"max-width": "350px"}}>
 
@@ -27,7 +27,7 @@ Goal-driven dialog agents perceive conversational modeling as identical to the c
 
 </div>
 
-To get a handle on GDDAs, let's explore a specific toy example: the comically persistent GDDA named "Persista". Unlike traditional models, Persista is designed with specific learning goals that she actively pursues throughout a conversation. These goals could be anything from learning the user's name to identifying their favorite color or musician. This active pursuit of goals represents a major shift from the passivity of traditional models and a step towards a more dynamic form of interaction.
+To get a handle on GDADs, let's explore a specific toy example: the comically persistent GDAD named "Persista". Unlike traditional models, Persista is designed with specific learning goals that she actively pursues throughout a conversation. These goals could be anything from learning the user's name to identifying their favorite color or musician. This active pursuit of goals represents a major shift from the passivity of traditional models and a step towards a more dynamic form of interaction.
 
 ```html
 <Context>
@@ -50,7 +50,7 @@ let goalIndex = 0;
 
 As a result, Persista's learning goals can be thought of as analogous to states in a finite state machine (FSM). For those not familiar, FSMs are models of computation that consist of a set of states and transition between them based on inputs. In Persista's case, each learning goal represents a state, and she transitions from one state to another as she accomplishes her goals.
 
-To drive transitions through the state machine, the internal monologue of the GDDA is modeled - here is an example dialog showing how the GDDA recognizes the first learning objective as met and proceeds to the next objective:
+To drive transitions through the state machine, the internal monologue of the GDAD is modeled - here is an example dialog showing how the GDAD recognizes the first learning objective as met and proceeds to the next objective:
 
 ![persista_compliance.png](persista_compliance.png)
 
@@ -71,7 +71,7 @@ ${learningGoals[goalIndex]}?`,
 
 A [CortexStep](/CortexStep/intro) encapsulates a snapshot of a specific point in the conversation's cognitive modeling, detailing Samantha's thoughts, strategies, and decisions. This representation allows her to evaluate her progress towards her learning goals continuously, adjust her strategies as needed, and thus keep the conversation dynamic.
 
-However, with Persista, we take this concept one step further by incorporating emotional state into the GDDA. For instance, Persista is equipped with an 'annoyance' factor that increases every time she faces difficulties achieving her learning goals.
+However, with Persista, we take this concept one step further by incorporating emotional state into the GDAD. For instance, Persista is equipped with an 'annoyance' factor that increases every time she faces difficulties achieving her learning goals.
 
 ```javascript
 annoyanceCounter += 20;
@@ -94,6 +94,6 @@ Finally, after meeting all of Persista's learning goals, she summarizes then exi
 
 ![persista_leaves.png](persista_leaves.png)
 
-With Persista, we have demonstrated the core principles of goal-oriented design, emotional intelligence, and working memory usage with [CortexStep](/CortexStep/intro), painting a compelling picture of what dynamic dialog agents can look like with **SocialAGI**. Whether it's a customer service chatbot or a personal companion, Persista underscores the idea that AI dialogues should be more than just reactive responses – they should be *programmed* dynamic, engaging, and evolving interactions that echo the depth and dynamism of human conversation.
+With Persista, we have demonstrated the core principles of goal-oriented design, emotional intelligence, and working memory usage with [CortexStep](/CortexStep/intro), painting a compelling picture of what dynamic agentic dialog can look like with **SocialAGI**. Whether it's a customer service chatbot or a personal companion, Persista underscores the idea that AI dialogues should be more than just reactive responses – they should be *programmed* dynamic, engaging, and evolving interactions that echo the depth and dynamism of human conversation.
 
 For developers seeking to push the boundaries of AI dialog systems check out the [Persista example](/playground?load=persista) in the [SocialAGI Playground](/playground?load=persista). As we continue to translate human cognitive modeling into an engineering problem, the prospect of creating AI dialog systems that can truly mimic the richness of human conversation becomes increasingly tangible, and we enable a totally new cohort of applications. So altogether - we're excited to see what you build next!
