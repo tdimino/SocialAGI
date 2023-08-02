@@ -75,6 +75,11 @@ const config = {
             label: "Docs",
           },
           {
+            to: "examples",
+            label: "Examples",
+            position: "left",
+          },
+          {
             to: "playground",
             label: "Playground",
             position: "left",
@@ -101,6 +106,10 @@ const config = {
               {
                 label: "Docs",
                 to: "/docs",
+              },
+              {
+                to: "examples",
+                label: "Examples",
               },
               {
                 to: "playground",

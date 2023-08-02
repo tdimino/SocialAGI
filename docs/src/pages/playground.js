@@ -22,7 +22,9 @@ import { Blueprints, Soul } from "socialagi";
 import playground from "playground";
 
 // Create our SocialAGI Soul from an example blueprint
-const soul = new Soul(Blueprints.SAMANTHA);
+let blueprint = Blueprints.SAMANTHA;
+blueprint.personality += "\\nSamantha kikes Chocolate";
+const soul = new Soul(blueprint);
 const conversation = soul.getConversation("example");
 
 // Listen for what the Soul wants to say
