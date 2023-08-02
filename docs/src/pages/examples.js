@@ -76,11 +76,6 @@ const Examples = () => {
         {data.map((item, index) => (
           <Card key={index} {...item} />
         ))}
-        <style global jsx>{`
-          footer {
-            display: none;
-          }
-        `}</style>
       </div>
     </Layout>
   );
