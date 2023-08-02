@@ -30,6 +30,6 @@ From a technical standpoint, each **MentalProcess** like "SamanthaReplies", repr
 
 In this context, the CortexScheduler ensures that each mental process operates in an isolated and deterministic manner. Instead of handling events as they occur, each process takes in a CortexStep, performs its task, and produces a new CortexStep, creating a pipeline of transformations that can be easily followed and debugged.
 
-By reducing the complexity associated with event-driven programming and providing a structured way to manage and track mental processes, CortexScheduler offers a valuable tool for managing event-driven agents, entities, and AI souls.
+By reducing the complexity associated with event-driven programming and providing a structured way to manage and track mental processes, CortexScheduler offers a valuable tool for managing event-driven AI Souls.
 
 In the following sections, we'll dive deeper into how to use CortexScheduler, explore its API, and go through some practical examples to illustrate how it can simplify your work.

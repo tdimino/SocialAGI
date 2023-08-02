@@ -11,7 +11,7 @@ tags: [Conversational Programming]
 
 With the discovery of large language models (LLMs) as effective generators of dialog-like utterances, we now have the tools for machines to interpret, generate, and engage with human language, facilitating a bridge of communication between humans and machines. As a result, we're witnessing a total resurgence of chatbot-like entities, embodied in a new wave of startups creating entities from AI companions to personal AIs.
 
-But despite their considerable advances, we're yet to replicate the dynamic, engaging, and context-rich conversations characteristic of human dialogue in any significant way. Notably, creating human-like agentic dialog essentially reduces to the following question:
+But despite their considerable advances, we're yet to replicate the dynamic, engaging, and context-rich conversations characteristic of human dialogue in any significant way. Notably, creating human-like agentic dialog for AI Souls essentially reduces to the following question:
 
 > How do we program a conversation?
 
@@ -94,6 +94,6 @@ Finally, after meeting all of Persista's learning goals, she summarizes then exi
 
 ![persista_leaves.png](persista_leaves.png)
 
-With Persista, we have demonstrated the core principles of goal-oriented design, emotional intelligence, and working memory usage with [CortexStep](/CortexStep/intro), painting a compelling picture of what dynamic agentic dialog can look like with **SocialAGI**. Whether it's a customer service chatbot or a personal companion, Persista underscores the idea that AI dialogues should be more than just reactive responses – they should be *programmed* dynamic, engaging, and evolving interactions that echo the depth and dynamism of human conversation.
+With Persista, we have demonstrated the core principles of goal-oriented design, emotional intelligence, and working memory usage with [CortexStep](/CortexStep/intro), painting a compelling picture of what dynamic agentic dialog can look like with **SocialAGI**. Persista underscores the idea that AI Soul dialogues should be more than just reactive responses – they should be *programmed* dynamic, engaging, and evolving interactions that echo the depth and dynamism of human conversation.
 
 For developers seeking to push the boundaries of AI dialog systems check out the [Persista example](/playground?load=persista) in the [SocialAGI Playground](/playground?load=persista). As we continue to translate human cognitive modeling into an engineering problem, the prospect of creating AI dialog systems that can truly mimic the richness of human conversation becomes increasingly tangible, and we enable a totally new cohort of applications. So altogether - we're excited to see what you build next!

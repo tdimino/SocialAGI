@@ -1,6 +1,6 @@
 ---
 slug: youre-thinking-about-AGI-wrong
-title: Why Processes > Prompting for AI
+title: Why Processes > Prompting for AI Souls
 authors: [jerrell]
 tags: [Conversational Programming]
 ---
@@ -9,7 +9,7 @@ I'm going to start with a hot take:
 
 > You're likely thinking about AGI wrong.
 
-In pursuit of better conversational and relational AI, current efforts still revolve around optimizing individual prompts. But this obsession overlooks a fundamental truth: prompts alone cannot replicate human cognition. 
+In pursuit of better conversational and relational AI Souls, current efforts still revolve around optimizing individual prompts. But this obsession overlooks a fundamental truth: prompts alone cannot replicate human cognition. 
 
 The real key lies in managing the contextual processes directing prompt sequences. By shifting focus from prompts to processes, we can move past mimicry and build digital entities that manifest true intelligence.
 
@@ -44,7 +44,7 @@ By segregating prompts into steps, we can incrementally build up knowledgeable, 
 ![samantha_agi_wrong.png](images/samantha_agi_wrong.png)
 *From SocialAGI Playground. Simple, but powerful showcase of Samantha having a goal and then as new information is received walking through discrete steps to determine how to respond. As you can see, she starts off quite annoyed. [[link](https://www.socialagi.dev/playground?load=samanthaLearns)]*
 
-This approach provides a natural paradigm for directing an AI's thinking. We construct complex prompts by chaining encapsulated steps of context, not engineering monolithic blocks. With context partitioned into steps, we also reap ancillary benefits:
+This approach provides a natural paradigm for directing an AI Soul's thinking. We construct complex prompts by chaining encapsulated steps of context, not engineering monolithic blocks. With context partitioned into steps, we also reap ancillary benefits:
 - Predictable behavior devoid of hidden side effects or state changes.
 - Robust context that accumulates progressively without modification or deletion.
 - Modular construction allowing steps to be developed and reasoned about independently.
@@ -71,7 +71,7 @@ For example, we could construct separate steps for:
 
 By separating these modes into discrete steps, we can cleanly distinguish thinking from emotional responses.
 
-This understanding enables smarter conversations. An AI could tap into its anger steps to increase hostile reactions. Or reference its contemplative steps to walk back frustration and reset its mental state.
+This understanding enables smarter conversations. An AI Soul could tap into its anger steps to increase hostile reactions. Or reference its contemplative steps to walk back frustration and reset its mental state.
 
 ![samantha_annoyed.png](images/samantha_annoyed.png)
 *From the SocialAGI Playground. In this example, Samantha is programmed to get angry, but can be convinced with thoughtful replies to no longer deliver angry responses. [[link](https://www.socialagi.dev/playground?load=samanthaEscalates)]*
@@ -91,4 +91,4 @@ With these tenets in place, we can advance through incremental evolution. Start 
 
 What matters most is the destination - creating digital minds that overcome prompt mimicking and manifest meaningful intelligence. Reaching that future requires elevating the contextual processes that drive all cognition.
 
-**SocialAGI** provides practical frameworks like [CortexStep](/CortexStep/intro) for those seeking prompt encapsulation grounded in cognitive principles. With modular, predictable tools that structure context sequences, SocialAGI enables process-driven AI systems that move past disjointed mimicry. Only by embracing process over prompts can we breathe life into artificial intelligence.
+**SocialAGI** provides practical frameworks like [CortexStep](/CortexStep/intro) for those seeking prompt encapsulation grounded in cognitive principles. With modular, predictable tools that structure context sequences, SocialAGI enables process-driven AI Souls that move past disjointed mimicry. Only by embracing process over prompts can we breathe life into artificial intelligence.
