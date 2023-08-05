@@ -58,7 +58,9 @@
 @media screen and (max-width: 500px) {
   .app {
     margin-left: 5px;
-    margin-right: -17px;
+    padding: 2rem;
+    margin-right: 5%;
+    padding-top: 0px;
     padding-left: 0.7rem;
   }
   .card {
