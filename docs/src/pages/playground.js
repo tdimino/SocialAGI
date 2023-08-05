@@ -45,7 +45,32 @@ conversation.on("thinks", (text) => {
   playground.log(text);
 });`.trim();
 
+const WarningMessage = () => {
+  return (
+    <div className="warning-message">
+      Your browser window is too small for the playground.
+    </div>
+  );
+};
+
 const BrowserPlayground = () => {
+  const [isTooSmall, setIsTooSmall] = useState(
+    window.matchMedia("(max-width: 768px)").matches
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTooSmall(window.matchMedia("(max-width: 768px)").matches);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up function
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const [messages, setMessages] = useState([
     // { sender: "user", message: "here's a bunch of text. Hello! Welcome!!!" },
     // { sender: "log", message: "here's a bunch of text. Hello! Welcome!!!" },
@@ -223,134 +248,141 @@ const BrowserPlayground = () => {
       title="Playground"
       description="Try out SocialAGI in the Playground"
     >
-      <div className="App">
-        <div className="containerTest">
-          <div className="panel">
-            <div className="editor-container">
-              <div className="editor-plus-run">
-                <div className="runBtnContainer">
-                  <HistoryButton
-                    visible={historyVisible}
-                    toggleHistory={toggleHistory}
-                  />
-                  <button className={`runBtn`} onClick={runUserCode}>
-                    <div className="clean-btn tocCollapsibleButton run-code-button-chevron">
-                      {codeUpdated
-                        ? lastRunCode?.length > 0
+      {isTooSmall ? (
+        <WarningMessage />
+      ) : (
+        <div className="App">
+          <div className="containerTest">
+            <div className="panel">
+              <div className="editor-container">
+                <div className="editor-plus-run">
+                  <div className="runBtnContainer">
+                    <HistoryButton
+                      visible={historyVisible}
+                      toggleHistory={toggleHistory}
+                    />
+                    <button className={`runBtn`} onClick={runUserCode}>
+                      <div className="clean-btn tocCollapsibleButton run-code-button-chevron">
+                        {codeUpdated
+                          ? lastRunCode?.length > 0
+                            ? `Restart SocialAGI`
+                            : "Run SocialAGI"
+                          : lastRunCode?.length > 0
                           ? `Restart SocialAGI`
-                          : "Run SocialAGI"
-                        : lastRunCode?.length > 0
-                        ? `Restart SocialAGI`
-                        : "Run SocialAGI"}
-                    </div>
-                  </button>
-                </div>
-                <div className="ace-editor-div">
-                  <HistoryTimeline
-                    currentCode={editorCode}
-                    visible={historyVisible}
-                    updateEditorCode={setEditorCode}
-                  />
-                  <Editor
-                    editorCode={editorCode}
-                    handleEditorChange={handleEditorChange}
-                  />
+                          : "Run SocialAGI"}
+                      </div>
+                    </button>
+                  </div>
+                  <div className="ace-editor-div">
+                    <HistoryTimeline
+                      currentCode={editorCode}
+                      visible={historyVisible}
+                      updateEditorCode={setEditorCode}
+                    />
+                    <Editor
+                      editorCode={editorCode}
+                      handleEditorChange={handleEditorChange}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="panelDivider" />
-          <div
-            className="panel"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            <div className="settings">
-              {numberLogs > 0 && (
-                <button onClick={handleToggle} className="apiButton">
-                  {showLogs
-                    ? "Hide Logs"
-                    : "Show Logs" + (numberLogs > 0 ? ` (${numberLogs})` : "")}
-                </button>
-              )}
-              <ApiKeyPopup
-                showPopupOverride={enterApiKey}
-                resetShowPopupOverride={() => setEnterApiKey(false)}
-              />
-            </div>
-            <div className="messages" ref={chatEndRef}>
-              {shownMessages.map((msg, index) => {
-                const isLog = msg.sender === "log";
-                const isUser = msg.sender === "user";
-                const headingIsSameAsParent =
-                  (shownMessages[index - 1] || {}).sender === msg.sender;
-                return isLog ? (
-                  <p className="log-container" key={index}>
-                    <div
-                      className={
-                        "message-heading-log" +
-                        (headingIsSameAsParent ? " transparent" : "")
-                      }
-                    >
-                      {msg.sender}
-                    </div>
-                    <div
-                      className={
-                        "message-container-log" +
-                        (!showSendMessage ? " log-container-bright" : "")
-                      }
-                    >
-                      {msg.message}
-                    </div>
-                  </p>
-                ) : (
-                  <p key={index}>
-                    {!headingIsSameAsParent && (
+            <div className="panelDivider" />
+            <div
+              className="panel"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
+              <div className="settings">
+                {numberLogs > 0 && (
+                  <button onClick={handleToggle} className="apiButton">
+                    {showLogs
+                      ? "Hide Logs"
+                      : "Show Logs" +
+                        (numberLogs > 0 ? ` (${numberLogs})` : "")}
+                  </button>
+                )}
+                <ApiKeyPopup
+                  showPopupOverride={enterApiKey}
+                  resetShowPopupOverride={() => setEnterApiKey(false)}
+                />
+              </div>
+              <div className="messages" ref={chatEndRef}>
+                {shownMessages.map((msg, index) => {
+                  const isLog = msg.sender === "log";
+                  const isUser = msg.sender === "user";
+                  const headingIsSameAsParent =
+                    (shownMessages[index - 1] || {}).sender === msg.sender;
+                  return isLog ? (
+                    <p className="log-container" key={index}>
                       <div
                         className={
-                          "message-heading" + (isUser ? "" : " active")
+                          "message-heading-log" +
+                          (headingIsSameAsParent ? " transparent" : "")
                         }
                       >
-                        {isUser ? "you" : msg.sender}
+                        {msg.sender}
                       </div>
-                    )}
-                    <div
-                      className="message-container"
-                      style={{ marginTop: headingIsSameAsParent ? -12 : null }}
-                    >
-                      {msg.message}
-                    </div>
-                  </p>
-                );
-              })}
-            </div>
-            {showSendMessage && (
-              <div className="submit-group">
-                <form onSubmit={handleChatInput}>
-                  <input
-                    className="inter-font"
-                    type="text"
-                    value={inputText}
-                    onChange={(e) => setInputText(e.target.value)}
-                    placeholder="Send message..."
-                  />
-                </form>
-                <button
-                  onClick={handleChatInput}
-                  type="submit"
-                  className="submit-btn"
-                >
-                  <IoIosSend
-                    className={
-                      "send-btn" + (inputText.length > 0 ? " active" : "")
-                    }
-                    size={26}
-                  />
-                </button>
+                      <div
+                        className={
+                          "message-container-log" +
+                          (!showSendMessage ? " log-container-bright" : "")
+                        }
+                      >
+                        {msg.message}
+                      </div>
+                    </p>
+                  ) : (
+                    <p key={index}>
+                      {!headingIsSameAsParent && (
+                        <div
+                          className={
+                            "message-heading" + (isUser ? "" : " active")
+                          }
+                        >
+                          {isUser ? "you" : msg.sender}
+                        </div>
+                      )}
+                      <div
+                        className="message-container"
+                        style={{
+                          marginTop: headingIsSameAsParent ? -12 : null,
+                        }}
+                      >
+                        {msg.message}
+                      </div>
+                    </p>
+                  );
+                })}
               </div>
-            )}
+              {showSendMessage && (
+                <div className="submit-group">
+                  <form onSubmit={handleChatInput}>
+                    <input
+                      className="inter-font"
+                      type="text"
+                      value={inputText}
+                      onChange={(e) => setInputText(e.target.value)}
+                      placeholder="Send message..."
+                    />
+                  </form>
+                  <button
+                    onClick={handleChatInput}
+                    type="submit"
+                    className="submit-btn"
+                  >
+                    <IoIosSend
+                      className={
+                        "send-btn" + (inputText.length > 0 ? " active" : "")
+                      }
+                      size={26}
+                    />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <style global jsx>{`
         footer {
           display: none;

@@ -55,6 +55,26 @@
   border: 1px solid var(--ifm-breadcrumb-color-active) !important;
 }
 
+@media screen and (max-width: 500px) {
+  .app {
+    margin-left: 5px;
+    margin-right: -17px;
+    padding-left: 0.7rem;
+  }
+  .card {
+    margin: 0rem;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  .title {
+    margin: 0;
+  }
+  .subheading {
+    margin-bottom: -2px;
+  }
+}
+
 .card-title {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
