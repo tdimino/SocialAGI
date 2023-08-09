@@ -1,4 +1,5 @@
-#!/bin/playground// Import necessary modules from the socialagi library
+#!/bin/playground
+// Import necessary modules from the socialagi library
 import { Action, CortexStep, CortexScheduler } from "socialagi";
 import playground from "playground";
 
@@ -97,7 +98,7 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
     );
     patienceMeter = 0;
     const endEarly = await step.next(Action.DECISION, {
-      description: `Is this candidate so bad enough I should just end the interview now?`,
+      description: `Is this candidate so absurdly bad I should just end the interview now?`,
       choices: ["yes", "no"],
     });
     playground.log("End early? " + endEarly.value);
