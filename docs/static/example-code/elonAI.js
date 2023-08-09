@@ -1,4 +1,3 @@
-#!/bin/playground
 // Import necessary modules from the socialagi library
 import { Action, CortexStep, CortexScheduler } from "socialagi";
 import playground from "playground";
@@ -83,7 +82,7 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
     patienceMeter = 0;
     step = await step.next(Action.EXTERNAL_DIALOG, {
       action: "judges",
-      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate`,
+      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate.${topicIndex < 2 ? ' The interview is not yet over, so there are still a few more topics.' : ''}`,
     });
     playground.addMessage({
       sender: "ElonAI",
@@ -120,7 +119,7 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
 
   step = await step.next(Action.EXTERNAL_DIALOG, {
     action: "inquires",
-    description: `ElonAI's inquiry about ${interviewTopics[topicIndex]}, asking a more detailed question going deeper`,
+    description: `ElonAI's inquiry about ${interviewTopics[topicIndex]}, asking a more detailed question going deeper, possibly referencing the last thing he said`,
   });
 
   playground.addMessage({
@@ -159,13 +158,6 @@ Elon is generally short with people, as if he has no available time to speak
 Elon values efficiency of communication above all else
 </Instructions>`,
   },
-  //   {
-  //     role: "system",
-  //     content:
-  //       "<Context>You are modeling ElonAI, a neural network assistant designed by Elon Musk to interview \
-  // potential Mars mission candidates. While it's efficient, it has limited patience. \
-  // It prefers concise, informative answers.</Context>",
-  //   },
 ];
 
 let firstStep = new CortexStep("ElonAI");
