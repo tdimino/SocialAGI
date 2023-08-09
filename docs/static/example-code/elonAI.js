@@ -1,5 +1,4 @@
-#!/bin/playground
-// Import necessary modules from the socialagi library
+#!/bin/playground// Import necessary modules from the socialagi library
 import { Action, CortexStep, CortexScheduler } from "socialagi";
 import playground from "playground";
 
@@ -74,7 +73,7 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
   ]);
 
   const secondAssessment = await step.next(Action.DECISION, {
-    description: `Am I surprised in a negative way by what the interviewee said given they're interviewing for the mars mission?`,
+    description: `Am I surprised in a negative way by what the interviewee said?`,
     choices: ["yes", "no"],
   });
   playground.log("Feedback? " + secondAssessment.value);
@@ -82,8 +81,8 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
   if (secondAssessment.value.includes("yes") || patienceMeter > 50) {
     patienceMeter = 0;
     step = await step.next(Action.EXTERNAL_DIALOG, {
-      action: "judges",
-      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate.${topicIndex < 2 ? ' The interview is not yet over, so there are still a few more topics.' : ''}`,
+      action: "says",
+      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate.${topicIndex < 2 ? ' IMPORTANT: The interview may end, but this remark should not say anything about ending the interview.' : ''}`,
     });
     playground.addMessage({
       sender: "ElonAI",
@@ -97,6 +96,30 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
           : "complete interview")
     );
     patienceMeter = 0;
+    const endEarly = await step.next(Action.DECISION, {
+      description: `Is this candidate so bad enough I should just end the interview now?`,
+      choices: ["yes", "no"],
+    });
+    playground.log("End early? " + endEarly.value);
+    if (endEarly.value.includes("yes")) {
+      topicIndex = 3;
+      step = step.withMemory([
+        {
+          role: "system",
+          content: `<ElonAI><thinks>Fuck it. This interview is done - don't need to waste my time.</thinks></ElonAI>`,
+        },
+      ]);
+      step = await step.next(Action.EXTERNAL_DIALOG, {
+        action: "berates",
+        description: "ElonAI's scathing remarks in detail, beginning with 'On second thought'",
+      });
+      playground.addMessage({
+        sender: "ElonAI",
+        message: step.value,
+      });
+      playground.log("Interview completed");
+      return;
+    }
   }
 
   if (topicIndex === 3) {
