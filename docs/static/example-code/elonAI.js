@@ -83,7 +83,11 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
     patienceMeter = 0;
     step = await step.next(Action.EXTERNAL_DIALOG, {
       action: "says",
-      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate.${topicIndex < 2 ? ' IMPORTANT: The interview may end, but this remark should not say anything about ending the interview.' : ''}`,
+      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate.${
+        topicIndex < 2
+          ? " IMPORTANT: The interview may end, but this remark should not say anything about ending the interview."
+          : ""
+      }`,
     });
     playground.addMessage({
       sender: "ElonAI",
@@ -112,7 +116,8 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
       ]);
       step = await step.next(Action.EXTERNAL_DIALOG, {
         action: "berates",
-        description: "ElonAI's scathing remarks in detail, beginning with 'On second thought'",
+        description:
+          "ElonAI's scathing remarks in detail, beginning with 'On second thought'",
       });
       playground.addMessage({
         sender: "ElonAI",
@@ -187,7 +192,10 @@ Elon prioritizes the company and mission above all else.
   },
 ];
 
-let firstStep = new CortexStep("ElonAI");
+let firstStep = new CortexStep("ElonAI", {
+  llmCallLogger: console.log,
+  stackUpdateLogger: (message) => console.log("Stack updated", message),
+});
 firstStep = firstStep.withMemory(initialContext);
 
 // Manage conversion of event-driven texts to synchronous interaction

@@ -28,7 +28,7 @@
     "react-ace": "^10.1.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.10.1",
-    "socialagi": "^0.0.29"
+    "socialagi": "^0.0.32"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.4.1",
