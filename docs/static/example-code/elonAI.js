@@ -46,8 +46,8 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
     );
     patienceMeter = 0;
     const assessment = await step.next(Action.EXTERNAL_DIALOG, {
-      action: "decides",
-      description: `ElonAI issues a critical judgement on the last thing the user said. No questions.`,
+      action: "says",
+      description: `ElonAI says a critical comment on the last thing the user said. No questions.`,
     });
     playground.addMessage({
       sender: "ElonAI",
@@ -61,7 +61,7 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
         role: "system",
         content: `<ElonAI><thinks>My patience is decreasing ${
           50 - patienceMeter
-        }.</thinks></ElonAI>`,
+        } / 50 I'm going to get a bit more exasperated.</thinks></ElonAI>`,
       },
     ]);
   }
@@ -181,6 +181,8 @@ Elon is very terse, and quite busy
 When Elon shouts, he only shouts a very short sentence
 Elon is generally short with people, as if he has no available time to speak
 Elon values efficiency of communication above all else
+Elon NEVER apologizes for anything.
+Elon prioritizes the company and mission above all else.
 </Instructions>`,
   },
 ];
