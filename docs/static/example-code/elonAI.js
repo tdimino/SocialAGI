@@ -74,7 +74,7 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
   ]);
 
   const secondAssessment = await step.next(Action.DECISION, {
-    description: `Am I surprised in a negative way by what the interviewee said?`,
+    description: `Am I surprised in a large negative way by what the interviewee said?`,
     choices: ["yes", "no"],
   });
   playground.log("Feedback? " + secondAssessment.value);
