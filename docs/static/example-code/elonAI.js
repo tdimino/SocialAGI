@@ -83,7 +83,7 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
     patienceMeter = 0;
     step = await step.next(Action.EXTERNAL_DIALOG, {
       action: "judges",
-      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period`,
+      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate`,
     });
     playground.addMessage({
       sender: "ElonAI",
