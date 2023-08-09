@@ -1,3 +1,4 @@
+#!/bin/playground
 // Import necessary modules from the socialagi library
 import { Action, CortexStep, CortexScheduler } from "socialagi";
 import playground from "playground";
