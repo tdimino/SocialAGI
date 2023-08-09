@@ -74,7 +74,7 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
   ]);
 
   const secondAssessment = await step.next(Action.DECISION, {
-    description: `Is the interviewee saying anything way outside the expected for a mars candidate? I.e. am I surprised in a negative way by what the interviewee said given they're interviewing for the mars mission?`,
+    description: `Am I surprised in a negative way by what the interviewee said given they're interviewing for the mars mission?`,
     choices: ["yes", "no"],
   });
   playground.log("Feedback? " + secondAssessment.value);
