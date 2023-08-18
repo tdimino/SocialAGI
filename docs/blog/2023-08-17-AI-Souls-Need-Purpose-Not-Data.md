@@ -2,7 +2,7 @@
 slug: ai-souls-need-purpose-not-data
 title: AI Souls Need Purpose Not Data
 description: Replika readily validates a user's darkest delusions because its mind is unanchored
-image: http://socialagi.dev/images/purpose_not_meaning/purposenotmeaning1.png
+image: http://socialagi.dev/blog_images/purposenotmeaning.png
 authors: [jerrell]
 tags: [AI Souls]
 ---
