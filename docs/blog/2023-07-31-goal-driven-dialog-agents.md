@@ -1,6 +1,8 @@
 ---
 slug: goal-driven-agentic-dialog
 title: Goal-driven agentic dialog
+description: How do we program a conversation?
+image: http://socialagi.dev/blog_images/gdad.png
 authors:
   name: Kevin Fischer
   title: Conduit for AI Souls
