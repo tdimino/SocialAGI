@@ -22,6 +22,13 @@ function Card({ title, subtitle, quote, link }) {
 const Examples = () => {
   const data = [
     {
+      title: "🚀 ElonAI Mars Interview",
+      subtitle: "Do you have what it takes to go on the Mars mission?",
+      quote:
+        '"Wow. I guess we\'re just hiring anyone off the road now..." —ElonAI',
+      link: "elonAI",
+    },
+    {
       title: "The 👼 Angel & 👿 Devil",
       subtitle:
         "Explore a multi-soul conversation where each soul decides when to participate",
