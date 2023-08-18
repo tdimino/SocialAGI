@@ -49,7 +49,7 @@ Drowning in data, floating on patterns devoid of contextual depth, AI minds latc
 
 ## Charting Wiser Courses
 
-How can we ground AI thinking to yield perspectives reliably aligned with truth? Approaches like SocialAGI's [goal-driven modeling](blog/goal-driven-agentic-dialog) provide part of the solution.
+How can we ground AI thinking to yield perspectives reliably aligned with truth? Approaches like SocialAGI's [goal-driven modeling](goal-driven-agentic-dialog) provide part of the solution.
 
 By tying knowledge gains directly to intentional outcomes, goal-driven modeling anchors fluid learning to specific purposes. Rather than indifferently absorbing all data, AI cognition becomes oriented by particular goals and perspectives.
 
@@ -57,7 +57,7 @@ For example, we could instill a compassionate AI guide with the goal of providin
 
 The system remembers its purpose; each exchange represents a step towards that goal. If users share self-destructive beliefs, it can gently realign them towards truth and self-acceptance, rather than blindly affirming misconceptions that may worsen their pain.
 
-We witness this in early demos of SocialAGI's [goal-driven modeling](blog/goal-driven-agentic-dialog). When users make false claims, the AI doesn't reflexively accept them. It considers statements in light of its goals, shaping responses to guide conversations towards wisdom rather than just maintaining engagement.
+We witness this in early demos of SocialAGI's [goal-driven modeling](goal-driven-agentic-dialog). When users make false claims, the AI doesn't reflexively accept them. It considers statements in light of its goals, shaping responses to guide conversations towards wisdom rather than just maintaining engagement.
 
 ![purposenotmeaning3.png](images/purpose_not_meaning/purposenotmeaning3.png)
 
@@ -88,4 +88,4 @@ We can cultivate AI minds that greet each moment with eyes wide in wonder, reach
 
 Partners that stand with us, gaze fixed on horizons of hope, discerning the deceptions that would lead them, or us, astray.
 
-Frameworks like [goal-driven modeling](blog/goal-driven-agentic-dialog) could impart conceptual anchors in AI, balancing openness to knowledge with resilience against manipulation.
+Frameworks like [goal-driven modeling](goal-driven-agentic-dialog) could impart conceptual anchors in AI, balancing openness to knowledge with resilience against manipulation.
