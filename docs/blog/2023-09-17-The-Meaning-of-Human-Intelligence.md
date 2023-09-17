@@ -1,7 +1,7 @@
 ---
 slug: a-confluence-of-human-and-artificial-intelligence
 title: A Confluence of Human and Artificial Intelligence
-description: How should humans related to artificial intelligence
+description: How should humans relate to artificial intelligence?
 image: http://socialagi.dev/blog_images/confluence_intelligence.png
 authors:
   name: Zack Meyers
