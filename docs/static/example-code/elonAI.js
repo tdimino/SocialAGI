@@ -1,7 +1,14 @@
 #!/bin/playground
 // Import necessary modules from the socialagi library
-import { Action, CortexStep, CortexScheduler } from "socialagi";
+import {
+  CortexStep,
+  CortexScheduler,
+  decision,
+  externalDialog,
+  internalMonologue,
+} from "socialagi/next";
 import playground from "playground";
+import { ChatMessageRoleEnum } from "socialagi";
 
 const interviewTopics = [
   "space travel experience",
@@ -20,16 +27,19 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
   let step = lastStep;
   step = step.withMemory([newMemory]);
 
-  step = await step.next(Action.INTERNAL_MONOLOGUE, {
-    action: "considers",
-    description: `ElonAI internally notes the user's response on the topic of ${interviewTopics[topicIndex]}`,
-  });
+  step = await step.next(
+    internalMonologue(
+      `ElonAI notes the user's response on the topic of ${interviewTopics[topicIndex]}`
+    )
+  );
   playground.log(step.value);
 
-  const assessment = await step.next(Action.DECISION, {
-    description: `Did I get a comprehensive understanding on the topic of: ${interviewTopics[topicIndex]}? comprehensive understanding means I could write a paragraph about the interviewee's experience`,
-    choices: ["yes", "no"],
-  });
+  const assessment = await step.next(
+    decision(
+      `Did ElonAI get a comprehensive understanding on the topic of: ${interviewTopics[topicIndex]}? Comprehensive understanding means he could write a paragraph about the interviewee's experience.`,
+      ["yes", "no"]
+    )
+  );
 
   playground.log(
     `Assessment on ${interviewTopics[topicIndex]}: ` +
@@ -45,10 +55,11 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
           : "complete interview")
     );
     patienceMeter = 0;
-    const assessment = await step.next(Action.EXTERNAL_DIALOG, {
-      action: "says",
-      description: `ElonAI says a critical comment on the last thing the user said. No questions.`,
-    });
+    const assessment = await step.next(
+      externalDialog(
+        `ElonAI should say a critical comment. ElonAI should not ask questions.`
+      )
+    );
     playground.addMessage({
       sender: "ElonAI",
       message: assessment.value,
@@ -58,37 +69,40 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
     playground.log(`Patience decreased to ${patienceMeter}`);
     step = step.withMemory([
       {
-        role: "system",
-        content: `<ElonAI><thinks>My patience is decreasing ${
+        role: ChatMessageRoleEnum.System,
+        content: `ElonAI thinks: My patience is decreasing ${
           50 - patienceMeter
-        } / 50 I'm going to get a bit more exasperated.</thinks></ElonAI>`,
+        } / 50 I'm going to get a bit more exasperated.`,
       },
     ]);
   }
 
   step = step.withMemory([
     {
-      role: "system",
-      content: `<ElonAI><plans>Now I will delve into the topic of: ${interviewTopics[topicIndex]} with the candidate.</plans></ElonAI>`,
+      role: ChatMessageRoleEnum.Assistant,
+      content: `ElonAI plans: Now I will delve into the topic of: ${interviewTopics[topicIndex]} with the candidate.`,
     },
   ]);
 
-  const secondAssessment = await step.next(Action.DECISION, {
-    description: `Am I surprised in a large negative way by what the interviewee said?`,
-    choices: ["yes", "no"],
-  });
+  const secondAssessment = await step.next(
+    decision(
+      `Is ElonAI surprised in a large negative way by what the interviewee said?`,
+      ["yes", "no"]
+    )
+  );
   playground.log("Feedback? " + secondAssessment.value);
 
   if (secondAssessment.value.includes("yes") || patienceMeter > 50) {
     patienceMeter = 0;
-    step = await step.next(Action.EXTERNAL_DIALOG, {
-      action: "says",
-      description: `ElonAI lets out a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate.${
-        topicIndex < 2
-          ? " IMPORTANT: The interview may end, but this remark should not say anything about ending the interview."
-          : ""
-      }`,
-    });
+    step = await step.next(
+      externalDialog(
+        `ElonAI should respond with a judgemental remark, somewhat sarcastic, possibly scathing, ending with a period, directed at the candidate. ${
+          topicIndex < 2
+            ? " IMPORTANT: The interview may end, but this remark should not say anything about ending the interview."
+            : ""
+        }`
+      )
+    );
     playground.addMessage({
       sender: "ElonAI",
       message: step.value,
@@ -101,24 +115,26 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
           : "complete interview")
     );
     patienceMeter = 0;
-    const endEarly = await step.next(Action.DECISION, {
-      description: `Is this candidate so absurdly bad I should just end the interview now?`,
-      choices: ["yes", "no"],
-    });
+    const endEarly = await step.next(
+      decision(
+        `Is this candidate so absurdly bad ElonAI should just end the interview now?`,
+        ["yes", "no"]
+      )
+    );
     playground.log("End early? " + endEarly.value);
     if (endEarly.value.includes("yes")) {
       topicIndex = 3;
       step = step.withMemory([
         {
-          role: "system",
-          content: `<ElonAI><thinks>Fuck it. This interview is done - don't need to waste my time.</thinks></ElonAI>`,
+          role: ChatMessageRoleEnum.Assistant,
+          content: `ElonAI thinks: Fuck it. This interview is done - don't need to waste my time.`,
         },
       ]);
-      step = await step.next(Action.EXTERNAL_DIALOG, {
-        action: "berates",
-        description:
-          "ElonAI's scathing remarks in detail, beginning with 'On second thought'",
-      });
+      step = await step.next(
+        externalDialog(
+          "ElonAI should respond with a berating, scathing remark, directed at the interviewee, beginning with 'On second thought'"
+        )
+      );
       playground.addMessage({
         sender: "ElonAI",
         message: step.value,
@@ -131,14 +147,13 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
   if (topicIndex === 3) {
     step = step.withMemory([
       {
-        role: "system",
-        content: `<ElonAI><thinks>Concluding the interview. Will provide feedback to the candidate if they made it. May be scathing and sarcastic possibly.</thinks></ElonAI>`,
+        role: ChatMessageRoleEnum.Assistant,
+        content: `ElonAI thinks: Concluding the interview. Will provide feedback to the candidate if they made it. May be scathing and sarcastic possibly.`,
       },
     ]);
-    step = await step.next(Action.EXTERNAL_DIALOG, {
-      action: "concludes",
-      description: "ElonAI's concluding remarks",
-    });
+    step = await step.next(
+      externalDialog("ElonAI should conclude the dialog.")
+    );
     playground.addMessage({
       sender: "ElonAI",
       message: step.value,
@@ -147,10 +162,11 @@ const elonAIReplies = async (signal, newMemory, lastStep) => {
     return;
   }
 
-  step = await step.next(Action.EXTERNAL_DIALOG, {
-    action: "inquires",
-    description: `ElonAI's inquiry about ${interviewTopics[topicIndex]}, asking a more detailed question going deeper, possibly referencing the last thing he said`,
-  });
+  step = await step.next(
+    externalDialog(
+      `ElonAI should inquire about ${interviewTopics[topicIndex]}, asking a more detailed question, going deeper, and possibly referencing the last thing ElonAI said`
+    )
+  );
 
   playground.addMessage({
     sender: "ElonAI",
@@ -167,28 +183,31 @@ const elonAIRepliesConfig = {
 
 const initialContext = [
   {
-    role: "system",
-    content: `<Context>
+    role: ChatMessageRoleEnum.System,
+    content: `
+# Background
+
 The office door slid open with a silence that defied its imposing stature, revealing an expansive space dominated by a massive desk made of some material that could have either been from Earth or another galaxy entirely. Its surface shimmered with a muted iridescence, resembling a cross between polished steel and the scales of a mythical creature. Above, a live feed of Mars — its red, dusty plains and subtle undulations — covered the ceiling, creating an illusion of standing beneath a Martian sky.
-
 Elon Musk sat behind the desk, his back straight, fingers intertwined. He stared at the screen on his desk, where a spaceship design danced and morphed as he seemingly re-imagined it in real-time. A Tesla Cybertruck — or perhaps a future version of it — stood quietly in one corner, its geometric angles juxtaposed against the round curves of a SpaceX prototype in the opposite corner.
-
 When he spoke, his voice would hold the weight of countless sleepless nights, filled with dreams and occasional nightmares of otherworldly adventures.
-</Context>`,
-  },
-  {
-    role: "system",
-    content: `<Instructions>
-The following is a record of the internal monologue and observations from Elon Musk, where he thinks through the candidacy of the new interviewee.
 
-Don't use any quotations. Ever.
-Elon is very terse, and quite busy
-When Elon shouts, he only shouts a very short sentence
-Elon is generally short with people, as if he has no available time to speak
-Elon values efficiency of communication above all else
-Elon NEVER apologizes for anything.
-Elon prioritizes the company and mission above all else.
-</Instructions>`,
+# Speaking Style
+
+* ElonAI speaks like Elon Musk
+* ElonAI is very terse, and quite busy
+* When ElonAI shouts, he only shouts a very short sentence
+* ElonAI is generally short with people, as if he has no available time to speak
+
+# Instructions
+
+* ElonAI values efficiency of communication above all else
+* ElonAI NEVER apologizes for anything.
+* ElonAI prioritizes the company and mission above all else.
+
+# Scenario
+
+The following is an professional job interview with Elon Musk, where he thinks through the candidacy of the new interviewee.
+`.trim(),
   },
 ];
 

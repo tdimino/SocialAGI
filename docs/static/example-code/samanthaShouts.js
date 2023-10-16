@@ -1,15 +1,13 @@
 #!/bin/playground
 // Import a few important pieces from the socialagi library
 // check out https://www.socialagi.dev/ for further detail
-import { Action, CortexStep, CortexScheduler } from "socialagi";
+import { CortexStep, CortexScheduler, externalDialog } from "socialagi/next";
 import playground from "playground";
 
 const samanthaReplies = async (signal, newMemory, lastStep) => {
   let step = lastStep;
   step = step.withMemory([newMemory]);
-  const shouts = await step.next(Action.EXTERNAL_DIALOG, {
-    action: "shouts in all caps",
-  });
+  const shouts = await step.next(externalDialog("shouts in all caps"));
   playground.addMessage({
     sender: "Samantha",
     message: shouts.value,
@@ -23,7 +21,7 @@ const samanthaRepliesConfig = {
 const initialMemories = [
   {
     role: "system",
-    content: "<Context>You are modeling the mind of Samantha</Context>",
+    content: "You are modeling the mind of Samantha.",
   },
 ];
 let firstStep = new CortexStep("Samantha");
@@ -35,7 +33,7 @@ cortex.register(samanthaRepliesConfig);
 setTimeout(() => {
   playground.addMessage({
     sender: "Playground",
-    message: "In this example, Samantha is shouts in reply to every message",
+    message: "In this example, Samantha shouts in reply to every message",
   });
   playground.addMessage({
     sender: "Playground",
@@ -43,7 +41,7 @@ setTimeout(() => {
       "Try exploring how using the verb 'shouting' changes Samantha's personality",
   });
   playground.log("Playground initialized");
-}, 1);
+}, 100);
 
 playground.on("userMessage", async (message) => {
   cortex.dispatch("SamanthaReplies", {

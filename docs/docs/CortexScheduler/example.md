@@ -8,14 +8,12 @@ sidebar_position: 3
 Let's review a simple example of using the **CortexScheduler** to help orchestrate calls to a discord bot. Here, we register the "SamanthaReplies" mental process with the scheduler, along with a memory initialization.
 
 ```javascript
-import { CortexStep, CortexScheduler } from "socialagi";
+import { CortexStep, CortexScheduler } from "socialagi/next";
 
 const samanthaReplies = async (signal, newMemory, lastStep) => {
   let step = lastStep;
   step = step.withMemory([newMemory]);
-  const shouts = await step.next(Action.EXTERNAL_DIALOG, {
-    action: "shouts in all caps",
-  });
+  const shouts = await step.next(externalDialog("shouts in all caps"));
   console.log("Samantha says: ", shouts.value);
   return shouts;
 };
@@ -24,10 +22,15 @@ const samanthaRepliesConfig = {
   process: samanthaReplies,
 };
 
+const abortQueuingStrategy = (currentJob:any, queue:any, newJob:any) => {
+  currentJob?.abortController?.abort();
+  return [newJob];
+};
+
 const initialMemories = [
   {
     role: "system",
-    content: "<Context>You are modeling the mind of Samantha</Context>",
+    content: "You are modeling the mind of Samantha"
   },
 ];
 let firstStep = new CortexStep("Samantha");
@@ -60,9 +63,7 @@ Mimicking human-like interaction in texting systems like Discord requires handli
 const SamanthaReplies = async (signal, newMemory, lastStep) => {
   let step = lastStep;
   step = step.withMemory([newMemory]);
-  const shouts = await step.next(Action.EXTERNAL_DIALOG, {
-    action: "shouts in all caps",
-  });
+  const shouts = await step.next(externalDialog("shouts in all caps"));
   if (signal.aborted) {
     return step;
   } else {
