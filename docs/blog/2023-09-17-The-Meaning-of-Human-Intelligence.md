@@ -7,7 +7,7 @@ authors:
   name: Zack Meyers
   title: Community Member
   url: https://twitter.com/zackaroosie
-  image_url: https://pbs.twimg.com/profile_images/1644836302435778561/Oj-finE5_400x400.jpg
+  image_url: https://pbs.twimg.com/profile_images/1706715561252749312/y9MjzFW9_400x400.jpg
 tags: [AI Souls]
 ---
 

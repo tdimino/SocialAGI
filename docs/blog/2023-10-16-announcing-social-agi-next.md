@@ -2,10 +2,12 @@
 slug: announcing-socialagi-next
 title: Announcing socialagi/next
 description: Here's an update on the newest way to write semantic programs and create Open Souls.
+image: http://socialagi.dev/blog_images/socialagiNext.png
 authors:
   name: Topper Bowers
   title: Cognitive Architect
   url: https://twitter.com/tobowers
+  image_url: https://pbs.twimg.com/profile_images/1705134011390070784/idwEKd1n_400x400.jpg
 tags: [AI Souls, release, programming, development, howto, announcement]
 ---
 
