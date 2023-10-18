@@ -1,8 +1,18 @@
-# Open Souls Memory
+---
+id: intro
+sidebar_position: 1
+---
 
-This library is a work in progress and currently only supports non-persistent in-memory storage.
+# Memory And Embeddings
 
-`@socialagi/memory` provides a simple way to store and retrieve memories using the `MemoryStream` class and the `Embedder` interface.
+`@socialagi/memory` provides a simple way to store and retrieve memories based on a relevancy score. The relevancy score was influenced by the [Stanford Simulation paper](https://arxiv.org/abs/2304.03442) and scores recency, importance, and relevance (based on vector similarity) of a memory when ranking.
+
+This library is a work in progress and currently only supports non-persistent, in-memory storage.
+
+
+```bash
+npm install @socialagi/memory
+```
 
 ## MemoryStream
 
@@ -23,7 +33,7 @@ await memoryStream.store({
 // Retrieve a memory
 const memory = await memoryStream.get("hi")
 
-// Search for memories with specific text
+// Search for memories relevant to a text
 const returnedMemories = await memoryStream.search("hi said the canine")
 ```
 
@@ -34,6 +44,8 @@ Memories are saved using the `Memory` interface.
 * createdAt: The date and time when the memory was created.
 * updatedAt: The date and time when the memory was last updated.
 * metadata: A record of any additional data associated with the memory.
+
+Only context is required.
 
 ```typescript
 const memory: Memory = {
@@ -47,7 +59,7 @@ const memory: Memory = {
     location: "New York"
   }
 }
-```
+``` 
 
 ## Embeddings
 
