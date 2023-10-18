@@ -33,6 +33,8 @@ const config = {
     locales: ["en"],
   },
 
+  plugins: ["docusaurus-webpack"],
+
   clientModules: [path.resolve(__dirname, "src/plugins/vercelAnalytics.js")],
 
   presets: [
