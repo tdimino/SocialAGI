@@ -48,6 +48,12 @@ const Examples = () => {
       quote: '"I COULD BE THAT FRIEND FOR YOU" —Samantha',
       link: "samanthaShouts",
     },
+    {
+      title: "🔍 Retrieval Augmented Generation",
+      subtitle: "Explore RAG on a long wikipedia article about deep learning.",
+      quote: `"I'm assuming you're looking for information related to machine learning." -Tamara`,
+      link: "rag",
+    },
   ];
 
   return (
