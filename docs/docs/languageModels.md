@@ -36,12 +36,41 @@ interface LanguageModelProgramExecutor {
 We also include a `FunctionlessLLM` `LanguageModelProgramExecutor` implementation that supports APIs with OpenAI chat API support (but does *not* require function calling support). This executor also supports calling APIs that do not allow more than one system message:
 
 ```typescript
-  let step = new CortexStep("Jonathan", {
+let step = new CortexStep("Jonathan", {
+  processor: new FunctionlessLLM({
+    baseURL: "http://localhost:1234/v1",
+    compressSystemMessages: true,
+  })
+});
+```
+
+Many Mistral and Together AI models work with this same interface, though we recommend only using their most intelligent models, e.g.
+```typescript
+let step = new CortexStep("Jonathan", {
     processor: new FunctionlessLLM({
-      baseURL: "http://localhost:1234/v1",
-      compressSystemMessages: true,
-    })
-  });
+    baseURL: "https://api.mistral.ai/v1/",
+    singleSystemMessage: true,
+    apiKey: "your_xyz_MISTRAL_API_KEY",
+  }, {
+    model: "mistral-medium",
+    temperature: 0.8,
+    max_tokens: 300,
+  })
+})
+```
+or
+```typescript
+let step = new CortexStep("Jonathan", {
+  processor: new FunctionlessLLM({
+    baseURL: "https://api.together.xyz/v1",
+    singleSystemMessage: true,
+    apiKey: "your_xyz_TOGETHER_API_KEY",
+  }, {
+    model: "NousResearch/Nous-Hermes-2-Yi-34B",
+    temperature: 0.7,
+    max_tokens: 300,
+  })
+})
 ```
 
 ### Example OpenAI completion engines
@@ -56,32 +85,3 @@ const executor = new OpenAILanguageProgramProcessor(
   },
 );
 ```
-
-## Next.js edge functions
-
-SocialAGI supports cognitive processing in the frontend through Next.js edge function support. In this paradigm, the executor and/or streamers are implemented via calls to Next.js edge functions. This requires a few pieces to setup:
-
-`api/lmExecutor` endpoint, configured with
-
-```javascript
-module.exports = createOpenAIExecutorHandler(Model.GPT_3_5_turbo_16k);
-```
-
-and/or
-
-`api/lmStreamer` endpoint, configured with
-
-```javascript
-module.exports = createOpenAIStreamHandler(Model.GPT_3_5_turbo_16k);
-```
-
-Then, the executor and streamer respectively are instantiated in the frontend via:
-
-```javascript
-const streamer = createChatCompletionStreamer("/api/lmStreamer");
-const executor = createChatCompletionExecutor("/api/lmExecutor");
-```
-
-A complete running example using this paradigm can be found in this [example SocialAGI web project](https://github.com/opensouls/socialagi-ex-webapp/tree/ede679932649b8f1f6704ac70218826d03b69af7).
-
-Similar paradigms could be extended to other frontend/web request frameworks than Next.js edge functions.

@@ -36,6 +36,16 @@ let step = new CortexStep("Assistant", {
 
 ## Other Methods
 
+### withMonologue(narrative)
+
+`withMonologue(narrative: string)` is syntactic sugar for adding a memory to the step, intended of the form:
+
+```javascript
+step = step.withMonologue(html`
+  Samantha thought: This is getting out of control, I need to leave.
+`)
+```
+
 ### toString()
 
 `toString()` generates a string representation of the assistant's chat history, including system instructions, user queries, and assistant responses.
