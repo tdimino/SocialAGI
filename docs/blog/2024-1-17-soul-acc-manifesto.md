@@ -1,5 +1,5 @@
 ---
-slug: soul-acc-manifesto
+slug: the-soul-acc-manifesto
 title: The Soul/ACC Manifesto
 description: A Maniesto for OPEN SOULS
 image: http://socialagi.dev/blog_images/soul_acc.png
