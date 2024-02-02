@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Featured Creators
 
-Our first featured Creator is none other than [King Bootoshi](/Featured%20Creator/Bootoshi)!
+Our first featured Creator is none other than [King Bootoshi](/Featured-Creator/Bootoshi)!
 
 SocialAGI celebrates our diverse and innovative community of creators and inventors. We are dedicated to showcasing the extraordinary talent and creativity within our community, highlighting how they leverage SocialAGI and Open Souls Soul Engine to bring their visionary ideas to life. By spotlighting members of our community inspiring journeys, SocialAGI not only honors the individual achievements, but also aims to inspire others.
 
