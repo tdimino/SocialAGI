@@ -34,7 +34,7 @@ let step = new CortexStep("Assistant", {
 });
 ```
 
-### Vision
+## Vision
 
 SocialAGI supports vision via the GPT4 vision API. Here is a simple example illustrating usageL
 
