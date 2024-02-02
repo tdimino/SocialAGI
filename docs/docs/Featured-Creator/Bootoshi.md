@@ -1,5 +1,6 @@
 ---
 id: Bootoshi
+image: http://socialagi.dev/doc_images/boos.png
 sidebar_position: 2
 ---
 
