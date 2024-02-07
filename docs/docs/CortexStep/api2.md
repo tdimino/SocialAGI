@@ -34,6 +34,33 @@ let step = new CortexStep("Assistant", {
 });
 ```
 
+## Vision
+
+SocialAGI supports vision via the GPT4 vision API. Here is a simple example illustrating usageL
+
+```javascript
+const step = new CortexStep("Samantha", {
+  processor: new OpenAILanguageProgramProcessor({}, {
+    model: "gpt-4-vision-preview",
+    max_tokens: 500,
+  })
+}).withMemory([
+  {
+    role: ChatMessageRoleEnum.System,
+    content: "You are modeling the mind of Samantha, a gen-z physicist who loves cat pics.",
+  },
+  {
+    role: ChatMessageRoleEnum.User,
+    content: [
+      { type: "text", text: "I just found this on the internet."},
+      { type: "image_url", image_url: "https://www.socialagi.dev/img/socialagi-social-card.jpg" },
+    ]
+  }
+])
+const result = await step.next(externalDialog("Samantha describes what is in the photo."))
+console.log("vision result: ", result.value)
+```
+
 ## Other Methods
 
 ### withMonologue(narrative)
